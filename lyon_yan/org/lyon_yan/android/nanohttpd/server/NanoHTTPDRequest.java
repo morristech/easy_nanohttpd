@@ -17,6 +17,21 @@ public class NanoHTTPDRequest {
 	private Map<String, String> parms;
 	private Map<String, String> files;
 
+	public NanoHTTPDRequest() {
+		super();
+	}
+
+	public NanoHTTPDRequest(String uri, Method method,
+			Map<String, String> headers, Map<String, String> parms,
+			Map<String, String> files) {
+		super();
+		this.uri = uri;
+		this.method = method;
+		this.headers = headers;
+		this.parms = parms;
+		this.files = files;
+	}
+
 	public String getUri() {
 		return uri;
 	}
