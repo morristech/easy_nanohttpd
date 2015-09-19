@@ -13,14 +13,19 @@ import fi.iki.elonen.NanoHTTPD.Response;
 public abstract class NanoHTTPDServlet {
 	public abstract String getURLPath();
 
+	public NanoHTTPDServlet() {
+		NanoHTTPDServletLoader<NanoHTTPDServlet> nanoHTTPDServletLoader = new NanoHTTPDServletLoader<>();
+		nanoHTTPDServletLoader.registNanoHTTPDServlet(this);
+	}
+
 	public NanoHTTPDServlet(NanoHTTPD nanoHTTPD,
 			NanoHTTPDRequest nanoHTTPDRequest) {
 		// TODO Auto-generated constructor stub
-		NanoHTTPDServletLoader.registNanoHTTPDServlet(this);
+		NanoHTTPDServletLoader<NanoHTTPDServlet> nanoHTTPDServletLoader = new NanoHTTPDServletLoader<>();
+		nanoHTTPDServletLoader.registNanoHTTPDServlet(this);
 		init(nanoHTTPD, nanoHTTPDRequest);
 		excute(nanoHTTPD, nanoHTTPDRequest);
 	}
-
 	public Response excute(NanoHTTPD nanoHTTPD,
 			NanoHTTPDRequest nanoHTTPDRequest) {
 		Method method = nanoHTTPDRequest.getMethod();
