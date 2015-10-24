@@ -25,6 +25,13 @@ public class NanoHTTPDServletLoader<V extends NanoHTTPDServlet> {
 		return null;
 	}
 
+	/**
+	 * 注册Servlet
+	 * 
+	 * @author Lyon_Yan <br/>
+	 *         <b>time</b>: 2015年10月24日 下午4:59:21
+	 * @param nanoHTTPDServlet
+	 */
 	public void registNanoHTTPDServlet(V nanoHTTPDServlet) {
 		if (maps == null) {
 			maps = new HashMap<String, NanoHTTPDServlet>();
@@ -32,6 +39,13 @@ public class NanoHTTPDServletLoader<V extends NanoHTTPDServlet> {
 		maps.put(nanoHTTPDServlet.getURLPath(), nanoHTTPDServlet);
 	}
 
+	/**
+	 * 获取已注册的servlet
+	 * 
+	 * @author Lyon_Yan <br/>
+	 *         <b>time</b>: 2015年10月24日 下午5:04:11
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<V> getNanoHTTPDServletList() {
 		if (maps == null) {

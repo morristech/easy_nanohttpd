@@ -106,7 +106,8 @@ public class MarkdownWebServerPlugin implements WebServerPlugin {
         }
     }
 
-    @Override
+    @SuppressWarnings("resource")
+	@Override
     public NanoHTTPD.Response serveFile(String uri, Map<String, String> headers, NanoHTTPD.IHTTPSession session, File file, String mimeType) {
         String markdownSource = readSource(file);
         byte[] bytes;
