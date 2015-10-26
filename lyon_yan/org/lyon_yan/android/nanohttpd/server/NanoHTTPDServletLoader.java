@@ -25,6 +25,10 @@ public class NanoHTTPDServletLoader<V extends NanoHTTPDServlet> {
 		return null;
 	}
 
+	public boolean contains(String uri) {
+		return maps.containsKey(uri);
+	}
+
 	/**
 	 * 注册Servlet
 	 * 

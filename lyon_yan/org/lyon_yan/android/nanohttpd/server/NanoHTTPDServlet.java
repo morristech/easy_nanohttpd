@@ -17,7 +17,13 @@ public abstract class NanoHTTPDServlet {
 		NanoHTTPDServletLoader<NanoHTTPDServlet> nanoHTTPDServletLoader = new NanoHTTPDServletLoader<>();
 		nanoHTTPDServletLoader.registNanoHTTPDServlet(this);
 	}
-
+/**
+ * 
+ * @author Lyon_Yan
+ * <br/><b>time</b>: 2015年10月26日 上午11:45:35
+ * @param nanoHTTPD
+ * @param nanoHTTPDRequest 
+ */
 	public NanoHTTPDServlet(NanoHTTPD nanoHTTPD,
 			NanoHTTPDRequest nanoHTTPDRequest) {
 		// TODO Auto-generated constructor stub
