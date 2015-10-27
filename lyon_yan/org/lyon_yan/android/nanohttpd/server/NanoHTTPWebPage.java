@@ -22,7 +22,7 @@ public class NanoHTTPWebPage {
 	 * 默认web资源的路径是SDK的路径
 	 */
 	private static String webContent_PATH = Environment
-			.getExternalStorageDirectory() + File.pathSeparator;
+			.getExternalStorageDirectory() + File.separator;
 
 	/**
 	 * 设置web资源的路径
@@ -34,7 +34,6 @@ public class NanoHTTPWebPage {
 	public static void setWebContent_PATH(String webContent_PATH) {
 		NanoHTTPWebPage.webContent_PATH = webContent_PATH;
 	}
-
 	/**
 	 * 获取web资源路径
 	 * 
