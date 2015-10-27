@@ -44,7 +44,7 @@ public class WebContentHelp {
 	 *            不允許为空或者“”
 	 * @throws IOException
 	 */
-	public static void copyAssetDirToFiles(Context context, String to_path,
+	private static void copyAssetDirToFiles(Context context, String to_path,
 			String dirname) throws IOException {
 		File dir = new File(to_path + "/" + dirname);
 		if (dir.exists()) {
