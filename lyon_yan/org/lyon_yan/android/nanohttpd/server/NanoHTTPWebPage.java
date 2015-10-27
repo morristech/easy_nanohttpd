@@ -17,7 +17,7 @@ import fi.iki.elonen.NanoHTTPD.Response;
  * @author Lyon_Yan <br/>
  *         <b>time</b>: 2015年10月24日 上午11:09:32
  */
-public class NanoHTTPWebPage {
+public class NanoHTTPWebPage extends NanoHTTPDServlet{
 	/**
 	 * 默认web资源的路径是SDK的路径
 	 */
@@ -51,6 +51,7 @@ public class NanoHTTPWebPage {
 	public Response excute(NanoHTTPD nanoHTTPD,
 			NanoHTTPDRequest nanoHTTPDRequest) {
 		String mimeType = MIME_TYPES.MIME_DEFAULT_BINARY;
+		FileInputStream fileInputStream=null;
 		try {
 			String uri = nanoHTTPDRequest.getUri();
 			int t = uri.lastIndexOf(".");
@@ -67,15 +68,30 @@ public class NanoHTTPWebPage {
 							+ getWebContent_PATH()+uri);
 			File file = new File(getWebContent_PATH()+uri);
 			if (file.exists() && !file.isDirectory()) {
+				fileInputStream=new FileInputStream(file);
 				return nanoHTTPD.newFixedLengthResponse(Response.Status.OK,
-						mimeType, new FileInputStream(file), file.length());
+						mimeType, fileInputStream, file.length());
 			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}finally{
+			try {
+//				fileInputStream.close();
+				fileInputStream=null;
+				HttpdServer.gc();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return nanoHTTPD.newFixedLengthResponse(Response.Status.NOT_FOUND,
 				mimeType, "404");
+	}
+	@Override
+	public String getURLPath() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

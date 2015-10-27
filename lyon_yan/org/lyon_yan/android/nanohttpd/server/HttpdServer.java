@@ -12,6 +12,21 @@ import fi.iki.elonen.NanoHTTPD;
  */
 public class HttpdServer extends NanoHTTPD {
 	private NanoHTTPDServletLoader<NanoHTTPDServlet> nanoHTTPDServlet = new NanoHTTPDServletLoader<NanoHTTPDServlet>();
+	private static int gc_request_times = 0;
+	private static int gc_request_max_times = 10;
+
+	public static void setGc_request_max_times(int gc_request_max_times) {
+		HttpdServer.gc_request_max_times = gc_request_max_times;
+	}
+
+	public static void gc() {
+		// TODO Auto-generated method stub
+		gc_request_times++;
+		if (gc_request_max_times < gc_request_times) {
+			System.gc();
+			gc_request_times = 0;
+		}
+	}
 
 	public HttpdServer(int port) {
 		super(port);

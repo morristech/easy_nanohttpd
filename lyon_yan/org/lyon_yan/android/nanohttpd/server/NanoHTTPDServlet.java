@@ -34,6 +34,7 @@ public abstract class NanoHTTPDServlet {
 	}
 	public Response excute(NanoHTTPD nanoHTTPD,
 			NanoHTTPDRequest nanoHTTPDRequest) {
+		HttpdServer.gc();
 		Method method = nanoHTTPDRequest.getMethod();
 		if (method.equals(Method.POST)) {
 			return doPost(nanoHTTPD, nanoHTTPDRequest);
