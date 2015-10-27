@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fi.iki.elonen.WebServerPlugin;
-
 public class MIME_TYPES {
 
     /**
