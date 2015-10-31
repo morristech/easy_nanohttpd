@@ -32,7 +32,12 @@ public class NanoHTTPDRequest {
 	 * request请求是所携带的字符串
 	 */
 	private String queryString = null;
-	public static final String QUERY_STRING = "NanoHTTPD.QUERY_STRING";
+	/**
+	 * post部分提交的数据
+	 */
+	private String postData = null;
+	private static final String QUERY_STRING = "NanoHTTPD.QUERY_STRING";
+	private static final String POST_DATA = "postData";
 
 	public NanoHTTPDRequest() {
 		super();
@@ -47,10 +52,6 @@ public class NanoHTTPDRequest {
 		setHeaders(headers);
 		setParms(parms);
 		setFiles(files);
-		if (getParms().containsKey(QUERY_STRING)) {
-			setQueryString(getParms().get(QUERY_STRING));
-			getParms().remove(QUERY_STRING);
-		}
 	}
 
 	public String getUri() {
@@ -82,6 +83,10 @@ public class NanoHTTPDRequest {
 	}
 
 	public void setParms(Map<String, String> parms) {
+		if (parms.containsKey(QUERY_STRING)) {
+			setQueryString(parms.get(QUERY_STRING));
+			parms.remove(QUERY_STRING);
+		}
 		this.parms = parms;
 	}
 
@@ -90,6 +95,9 @@ public class NanoHTTPDRequest {
 	}
 
 	public void setFiles(Map<String, String> files) {
+		if (files.containsKey(POST_DATA)) {
+			setPostData(files.get(POST_DATA));
+		}
 		this.files = files;
 	}
 
@@ -99,5 +107,13 @@ public class NanoHTTPDRequest {
 
 	public String getQueryString() {
 		return queryString;
+	}
+
+	public String getPostData() {
+		return postData;
+	}
+
+	public void setPostData(String postData) {
+		this.postData = postData;
 	}
 }
